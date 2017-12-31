@@ -10265,16 +10265,19 @@ var _jquery = require("jquery");
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _suffixName = require("./suffixName");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function handleClick() {
     var name = (0, _jquery2.default)("#inputName").val();
-    (0, _jquery2.default)("#outputName").text(name);
+    var suffixedName = (0, _suffixName.suffixName)(name);
+    (0, _jquery2.default)("#outputName").text(suffixedName);
     (0, _jquery2.default)(".wishlistCreator").slideDown();
     (0, _jquery2.default)(".listCreator").slideUp();
 }
 
-},{"jquery":1}],3:[function(require,module,exports){
+},{"./suffixName":4,"jquery":1}],3:[function(require,module,exports){
 "use strict";
 
 var _jquery = require("jquery");
@@ -10287,4 +10290,24 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _jquery2.default)("#createButton").on("click", _actionHandler.handleClick);
 
-},{"./actionHandler":2,"jquery":1}]},{},[3]);
+},{"./actionHandler":2,"jquery":1}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.suffixName = suffixName;
+/**
+ * Check and convert name into correct form.
+ * @param {string} name A name which you want to have suffixed
+ */
+function suffixName(name) {
+    var suffixedName = name;
+    var lastCharacter = name[name.length - 1];
+    if (lastCharacter !== "s") {
+        suffixedName += "s";
+    }
+    return suffixedName;
+}
+
+},{}]},{},[3]);
