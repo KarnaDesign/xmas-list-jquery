@@ -1,6 +1,9 @@
 import $ from "jquery";
 import {
-    handleClick
+    handleClick,
+    handleAddWishItem
 } from "./actionHandler";
 
 $("#createButton").on("click", handleClick);
+
+$(".wishlistItem").on("keydown", handleAddWishItem);

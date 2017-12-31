@@ -12,5 +12,23 @@ export function handleClick() {
 }
 
 export function handleAddWishItem(e) {
+    if (e.keyCode === 13) {
+        const wish = $(".wishlistItem").val();
+        const trashSpan = $("<span></span>").addClass("fa fa-trash");
+        const wishSpan = $("<span></span>").text(wish);
+        const li = $("<li></li>")
+            .append(wishSpan)
+            .append(trashSpan)
+            .appendTo("#wishlist");
 
+        trashSpan.on("click", () => {
+            li.remove();
+        });
+
+        $(".input").appendTo("#wishlist");
+        $(".wishlistItem")
+            .val("")
+            .focus();
+
+    }
 }

@@ -10260,6 +10260,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.handleClick = handleClick;
+exports.handleAddWishItem = handleAddWishItem;
 
 var _jquery = require("jquery");
 
@@ -10277,6 +10278,22 @@ function handleClick() {
     (0, _jquery2.default)(".listCreator").slideUp();
 }
 
+function handleAddWishItem(e) {
+    if (e.keyCode === 13) {
+        var wish = (0, _jquery2.default)(".wishlistItem").val();
+        var trashSpan = (0, _jquery2.default)("<span></span>").addClass("fa fa-trash");
+        var wishSpan = (0, _jquery2.default)("<span></span>").text(wish);
+        var li = (0, _jquery2.default)("<li></li>").append(wishSpan).append(trashSpan).appendTo("#wishlist");
+
+        trashSpan.on("click", function () {
+            li.remove();
+        });
+
+        (0, _jquery2.default)(".input").appendTo("#wishlist");
+        (0, _jquery2.default)(".wishlistItem").val("").focus();
+    }
+}
+
 },{"./suffixName":4,"jquery":1}],3:[function(require,module,exports){
 "use strict";
 
@@ -10289,6 +10306,8 @@ var _actionHandler = require("./actionHandler");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _jquery2.default)("#createButton").on("click", _actionHandler.handleClick);
+
+(0, _jquery2.default)(".wishlistItem").on("keydown", _actionHandler.handleAddWishItem);
 
 },{"./actionHandler":2,"jquery":1}],4:[function(require,module,exports){
 "use strict";
